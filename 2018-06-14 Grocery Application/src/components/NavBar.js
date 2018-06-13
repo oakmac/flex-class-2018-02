@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 // C. Oakman
 // Defines a navigation link. Receives:
@@ -28,6 +28,7 @@ function NavBar (props) {
     <nav className='tabs is-boxed'>
       <ul>
         <NavLink label='Home' route='/home' activeRoute={props.activeRoute} />
+        <NavLink label='Inventory' route='/inventory' activeRoute={props.activeRoute} />
         <NavLink label='Dashboard' route='/dashboard' activeRoute={props.activeRoute} />
         <NavLink label='Groceries' route='/groceries' activeRoute={props.activeRoute} />
       </ul>

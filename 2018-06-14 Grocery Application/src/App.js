@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import 'bulma/css/bulma.css'
+
 import './App.css'
 
 // C. Oakman
@@ -9,6 +9,7 @@ import NavBar from './components/NavBar.js'
 import Homepage from './components/Homepage.js'
 import Dashboard from './components/Dashboard.js'
 import Groceries from './components/Groceries.js'
+import Inventory from './components/Inventory.js'
 
 // C. Oakman
 // By convention, the top-level Component for React applications is named "App" (short for "Application")
@@ -17,10 +18,9 @@ import Groceries from './components/Groceries.js'
 class App extends Component {
   // C. Oakman
   // For Class-based components, you *must* call super() inside the constructor method
-  // like this. The constructor will be passed props, and those need to be passed to super
-  // as well.
-  constructor (props) {
-    super(props)
+  // like this.
+  constructor () {
+    super()
 
     // C. Oakman
     // We can set up some initial state for our component inside the constructor function.
@@ -33,8 +33,15 @@ class App extends Component {
     // C. Oakman
     // Set up hash-based routing in the Constructor. Note this is a little bit unorthodox
     // for React.js since we are adding an event to the "real" DOM instead of a Virtual DOM node.
-    // Since App is our top-level component and there should only be one of them
-    // on the page, I think this is fine.
+    //
+    // Since App is our top-level component and we are using this.state.route as the
+    // "one source of truth" for what page we are on, I think this is fine.
+    //
+    // Also note that we are wrapping "this.hashChange()" inside an arrow function.
+    // This binds the function to this class (ie: it binds the "this" keyword inside the function)
+    // This is necessary so that "hashChange()" will execute in the context of our class object.
+    // An equivalent method would be:
+    // window.onhashchange = this.hashChange.bind(this)
     window.onhashchange = () => { this.hashChange() }
   }
 
@@ -49,7 +56,7 @@ class App extends Component {
   // to be more complex than this I recommend using a library like react-router (or similar)
   // General principle: do not add libraries unless you need them.
   hashChange () {
-    const validRoutes = ['/home', '/dashboard', '/groceries']
+    const validRoutes = ['/home', '/inventory', '/dashboard', '/groceries']
     const defaultRoute = '/home/'
     const newRoute = window.location.hash.replace(/^#/, '').trim()
     const isValidRoute = validRoutes.includes(newRoute)
@@ -70,6 +77,8 @@ class App extends Component {
       pageComponent = <Dashboard />
     } else if (this.state.route === '/groceries') {
       pageComponent = <Groceries />
+    } else if (this.state.route === '/inventory') {
+      pageComponent = <Inventory />
     }
 
     // C. Oakman
@@ -86,4 +95,6 @@ class App extends Component {
   }
 }
 
+// C. Oakman
+// Export our App component to be used by index.js
 export default App

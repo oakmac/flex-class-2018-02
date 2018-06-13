@@ -1,3 +1,23 @@
 .main-app {
   padding: 20px;
 }
+
+.dashboard-section .card {
+  margin-bottom: 20px;
+}
+
+.push-down {
+  margin-top: 20px;
+}
+
+.no-items {
+  color: #999;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.table th.align-right,
+.align-right {
+  text-align: right;
+}
