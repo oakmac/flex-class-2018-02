@@ -7,7 +7,7 @@ import React from 'react'
 // props.route
 //
 // It would be fine to put this component into it's own file instead of having
-// it here alongside NavBar. Matter of preference.
+// it here alongside NavBar. Question of preference.
 function NavLink (props) {
   const liClassName = (props.route === props.activeRoute) ? 'is-active' : ''
   const href = '#' + props.route
@@ -29,8 +29,7 @@ function NavBar (props) {
       <ul>
         <NavLink label='Home' route='/home' activeRoute={props.activeRoute} />
         <NavLink label='Inventory' route='/inventory' activeRoute={props.activeRoute} />
-        <NavLink label='Dashboard' route='/dashboard' activeRoute={props.activeRoute} />
-        <NavLink label='Groceries' route='/groceries' activeRoute={props.activeRoute} />
+        <NavLink label='New Item' route='/new-item' activeRoute={props.activeRoute} />
       </ul>
     </nav>
   )

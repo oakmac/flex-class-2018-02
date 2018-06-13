@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import './App.css'
 
 // C. Oakman
@@ -7,9 +6,8 @@ import './App.css'
 // into this module here.
 import NavBar from './components/NavBar.js'
 import Homepage from './components/Homepage.js'
-import Dashboard from './components/Dashboard.js'
-import Groceries from './components/Groceries.js'
-import Inventory from './components/Inventory.js'
+import InventoryPage from './components/InventoryPage.js'
+import NewItemPage from './components/NewItemPage.js'
 
 // C. Oakman
 // By convention, the top-level Component for React applications is named "App" (short for "Application")
@@ -56,7 +54,7 @@ class App extends Component {
   // to be more complex than this I recommend using a library like react-router (or similar)
   // General principle: do not add libraries unless you need them.
   hashChange () {
-    const validRoutes = ['/home', '/inventory', '/dashboard', '/groceries']
+    const validRoutes = ['/home', '/inventory', '/new-item']
     const defaultRoute = '/home/'
     const newRoute = window.location.hash.replace(/^#/, '').trim()
     const isValidRoute = validRoutes.includes(newRoute)
@@ -73,12 +71,10 @@ class App extends Component {
     // Note that we can use normal JS conditions here to determine what the active
     // "page" should be. The render function in React is a normal JS function.
     let pageComponent = <Homepage />
-    if (this.state.route === '/dashboard') {
-      pageComponent = <Dashboard />
-    } else if (this.state.route === '/groceries') {
-      pageComponent = <Groceries />
-    } else if (this.state.route === '/inventory') {
-      pageComponent = <Inventory />
+    if (this.state.route === '/inventory') {
+      pageComponent = <InventoryPage />
+    } else if (this.state.route === '/new-item') {
+      pageComponent = <NewItemPage />
     }
 
     // C. Oakman
@@ -95,6 +91,5 @@ class App extends Component {
   }
 }
 
-// C. Oakman
-// Export our App component to be used by index.js
+// C. Oakman - Export our App component to be used by index.js
 export default App
