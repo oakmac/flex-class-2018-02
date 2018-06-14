@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {NumberInputField, TextInputField} from './Inputs.js'
 import {addItem} from '../inventory.js'
 
+// C. Oakman
+// You could extract these two components (SuccessMsg and ActionBar) into a new
+// module if you wanted to.
 function SuccessMsg (props) {
   return (
     <div className='notification is-success'>
@@ -24,10 +27,13 @@ function ActionBar (props) {
   )
 }
 
+// C. Oakman
+// This component has some local state, so we will use a class.
 class NewItemPage extends Component {
   constructor () {
     super()
 
+    // C. Oakman - set up our initial state in the constructor
     this.state = {
       count: 0,
       name: '',
@@ -84,7 +90,9 @@ class NewItemPage extends Component {
 
     // C. Oakman
     // We are binding these functions to this component class, and at the same
-    // time "adding" an argument to their execution. Nifty.
+    // time "injecting" an argument to their execution. Nifty.
+    // Note that the function signature of updateProperty expects two things: "fieldId" and "event"
+    // We are setting that first argument here. "event" is passed in via the React event
     const nameChangeFn = this.updateProperty.bind(this, 'name')
     const pluChangeFn = this.updateProperty.bind(this, 'plu')
     const priceChangeFn = this.updateProperty.bind(this, 'price')
@@ -93,6 +101,10 @@ class NewItemPage extends Component {
     const submitFn = this.submitNewItem.bind(this)
     const resetFn = this.resetFormFields.bind(this)
 
+    // C. Oakman
+    // Note how much DOM is produced by this render function.
+    // But we are still under 10 lines of JSX here --> use Components to break up
+    // your DOM into logical chunks.
     return (
       <section>
         {successNotification}

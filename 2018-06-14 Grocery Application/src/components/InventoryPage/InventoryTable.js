@@ -2,6 +2,7 @@ import React from 'react'
 
 // C. Oakman - note that all of the render functions in this module are small
 // All less than 10 lines.
+
 function TableHeader () {
   return (
     <thead>

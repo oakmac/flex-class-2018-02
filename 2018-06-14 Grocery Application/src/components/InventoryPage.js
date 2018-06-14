@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import InventoryTable from './InventoryPage/InventoryTable.js'
 import {getInventory} from '../inventory.js'
 
+// C. Oakman
+// You could put these two components (NoItemsFound, SearchInput) into their own
+// modules if you wanted to.
+
 function NoItemsFound () {
   return (
     <p className='no-items'>No items found.</p>
@@ -18,6 +22,8 @@ function SearchInput (props) {
   )
 }
 
+// C. Oakman
+// This component has state, so we use a class.
 class InventoryPage extends Component {
   constructor () {
     super()
@@ -50,7 +56,12 @@ class InventoryPage extends Component {
 
   render () {
     const updateSearchTxt = this.updateSearchTxt.bind(this)
+
+    // C. Oakman - here we are binding "isMatch" to null (ie: nothing) and injecting
+    // the first argument to the function
     const matchFn = this.isMatch.bind(null, this.state.searchTxt)
+
+    // C. Oakman - filtering of results happens here
     const filteredItems = this.state.inventory.filter(matchFn)
 
     let bodyComponent = <InventoryTable items={filteredItems} />
@@ -59,7 +70,7 @@ class InventoryPage extends Component {
     }
 
     return (
-      <section className='dashboard-section'>
+      <section>
         <SearchInput searchTxt={this.state.searchTxt} updateSearchTxt={updateSearchTxt} />
         <div className='push-down'>
           {bodyComponent}
