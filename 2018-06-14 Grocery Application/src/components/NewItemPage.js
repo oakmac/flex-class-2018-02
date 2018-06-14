@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {NumberInputField, TextInputField} from './Inputs.js'
+import {addItem} from '../inventory.js'
 
 function SuccessMsg (props) {
   return (
@@ -42,8 +43,17 @@ class NewItemPage extends Component {
 
   submitNewItem () {
     // TODO: do some input validation here
-    // TODO: add the item to localStorage
 
+    // add the new item to inventory
+    const newItem = {
+      name: this.state.name,
+      plu: this.state.plu,
+      count: this.state.count,
+      price: this.state.price
+    }
+    addItem(newItem)
+
+    // reset our component state
     this.setState({showSuccess: true})
     this.resetFormFields()
   }

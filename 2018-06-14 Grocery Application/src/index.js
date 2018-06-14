@@ -18,10 +18,10 @@ if (!getInventory()) {
   window.fetch('data/inventory.json')
     .then(function (response) { return response.json() })
     .then(setInventory)
-    .then(beginRendering)
+    .then(startRendering)
     .catch(fetchFailed)
 } else {
-  beginRendering()
+  startRendering()
 }
 
 // C. Oakman
@@ -29,7 +29,7 @@ if (!getInventory()) {
 // We are telling the App component to render into the real DOM element with id "root"
 // From here on out, everything inside the DOM is managed by the React library and
 // our component definitions.
-function beginRendering () {
+function startRendering () {
   ReactDOM.render(<App />, document.getElementById('root'))
 }
 

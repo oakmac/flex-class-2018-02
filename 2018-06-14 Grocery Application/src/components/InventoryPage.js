@@ -22,6 +22,8 @@ class InventoryPage extends Component {
   constructor () {
     super()
 
+    // C. Oakman
+    // Initialize this component with inventory data that we stored in localStorage
     this.state = {
       inventory: getInventory(),
       searchTxt: ''
@@ -36,7 +38,6 @@ class InventoryPage extends Component {
   }
 
   // Does this item match the search text?
-  // NOTE: this function does not really need to be inside the component class
   isMatch (searchTxt, item) {
     // make everything a string and lower case
     const pluString = item.plu.toString()
