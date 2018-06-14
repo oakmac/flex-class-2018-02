@@ -38,7 +38,9 @@ class InventoryPage extends Component {
 
   // C. Oakman - we will pass the synthetic React event to this function as "evt"
   updateSearchTxt (evt) {
-    // C. Oakman - you can get the text value out of the event like this:
+    // C. Oakman
+    // Very often you need to get the value from an <input> element via onChange event
+    // That value is located at: evt.currentTarget.value
     const newText = evt.currentTarget.value
     this.setState({searchTxt: newText})
   }
@@ -69,6 +71,13 @@ class InventoryPage extends Component {
       bodyComponent = <NoItemsFound />
     }
 
+    // C. Oakman
+    // This small render function produces a lot of DOM (the full inventory table)
+    // But the complexity is located in other components that are children of this
+    // one.
+    // Small render functions are easier to understand than large ones.
+    // You can generalize this to all programming:
+    // "small functions are easier to understand than long functions"
     return (
       <section>
         <SearchInput searchTxt={this.state.searchTxt} updateSearchTxt={updateSearchTxt} />

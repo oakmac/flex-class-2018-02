@@ -76,6 +76,12 @@ class NewItemPage extends Component {
 
   // upate a single property from an <input> element
   updateProperty (fieldId, evt) {
+    // C. Oakman
+    // "fieldId" is the string value of the field on this class we are updating
+    // ie: "count", "name", "plu", "price"
+    //
+    // Just like on InventoryPage.updateSearchTxt, we use evt.currentTarget.value
+    // here to get the value out of <input> elements
     const newValue = evt.currentTarget.value
     this.setState(function (prevState) {
       let newObj = {}
