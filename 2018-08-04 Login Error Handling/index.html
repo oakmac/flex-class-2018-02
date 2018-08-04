@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Login Page Error Handling</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <style type="text/css">
+  .input-chunk {
+    margin: 20px 0;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  #loginForm {
+    margin: 100px auto;
+    width: 400px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+
+  .error-box {
+    background: red;
+    border: 1px solid red;
+    color: #fff;
+  }
+  </style>
+</head>
+
+<body>
+
+
+  <form id="loginForm">
+    <div class="input-chunk">
+      <label>Username</label>
+      <input type="text" id="username" />
+    </div>
+    <div class="input-chunk">
+      <label>Password</label>
+      <input type="password" id="password" />
+    </div>
+    <div id="errorBox" class="error-box" style="display:none">
+      <p id="errorMsg"></p>
+    </div>
+    <div class="input-chunk">
+      <input type="submit" value="Login Now" id="loginBtn" />
+    </div>
+  </form>
+
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/login.js"></script>
+
+</body>
+
+</html>
