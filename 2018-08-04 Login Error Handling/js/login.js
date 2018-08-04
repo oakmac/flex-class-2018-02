@@ -54,7 +54,7 @@ const passwordValidation = [
 // DOM Manipulation
 // ----------------------------------------------------------------------------
 
-function hideError () {
+function hideErrors () {
   $('#errorMsg').html('')
   $('#errorBox').hide()
 }
@@ -69,11 +69,34 @@ function showErrors (errorMessages) {
   $('#errorBox').show()
 }
 
+function receiveAjaxData (errors) {
+  clearLoadingState()
+
+  if (errors.length === 0) {
+    hideErrors()
+    // TODO: go to login success page
+    console.log('success! user is logged in now')
+  } else {
+    showErrors(errors)
+  }
+}
+
+function sendLoginRequest (username, password) {
+  // simulate AJAX request
+  window.setTimeout(function () {
+    // receiveAjaxData([]) // simulates a success call
+    receiveAjaxData(['Username already taken. Please choose another name.'])
+  }, 600)
+}
+
+function clearLoadingState () {
+  $('#loginBtn').attr('disabled', false)
+                .val('Login Now')
+}
+
 function setLoadingState () {
   $('#loginBtn').attr('disabled', true)
-    .val('Logging in ...')
-
-  // TODO: send your login AJAX request here
+                .val('Logging in ...')
 }
 
 // ----------------------------------------------------------------------------
@@ -104,8 +127,9 @@ function submitLoginForm (evt) {
   })
 
   if (errors.length === 0) {
-    hideError()
+    hideErrors()
     setLoadingState()
+    sendLoginRequest(username, password)
   } else {
     showErrors(errors)
   }
